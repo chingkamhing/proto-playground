@@ -1,0 +1,23 @@
+syntax = "proto3";
+package gateway;
+option go_package = "github.com/TMGaminghk/tm2-proto-gateway-go;tm2_proto_gateway";
+
+import "tmdatabase/tmdatabase_struct.proto";
+
+// User
+
+message GetUserBasicRequest {
+    int32 id = 1;
+}
+message GetUserBasicReply {
+    tmdatabase.UserBasic value = 1;
+    string error = 2;
+}
+
+message GetUserBalanceRequest {
+    int32 id = 1;
+}
+message GetUserBalanceReply {
+    tmdatabase.UserBalance value = 1;
+    string error = 2;
+}

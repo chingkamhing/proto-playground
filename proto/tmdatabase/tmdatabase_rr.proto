@@ -1,0 +1,117 @@
+syntax = "proto3";
+package tmdatabase;
+option go_package = "github.com/TMGaminghk/tm2-proto-tmdatabase-go;tm2_proto_tmdatabase";
+
+import "tmdatabase/tmdatabase_struct.proto";
+
+// User
+
+message GetUserBasicRequest {
+    int32 id = 1;
+}
+message GetUserBasicReply {
+    UserBasic value = 1;
+    string error = 2;
+}
+
+message GetUserBalanceRequest {
+    int32 id = 1;
+}
+message GetUserBalanceReply {
+    UserBalance value = 1;
+    string error = 2;
+}
+
+message GetUserStartGameInfoRequest {
+    int32 id = 1;
+}
+message GetUserStartGameInfoReply {
+    UserStartGameInfo value = 1;
+    string error = 2;
+}
+
+message CreateBotPlayersRequest {
+    // the bot players whose game belongs to
+    int32 gameID = 1;
+    // bot players name prefix
+    string name = 2;
+    // bot players initia score (should be big enough to meet all game rooms' minimum bet requirement)
+    int64 score = 3;
+    // number of bot players request to be created
+    int32 number = 4;
+}
+message CreateBotPlayersReply {
+    repeated UserBasic values = 1;
+    string error = 2;
+}
+
+message ListBotPlayersRequest {
+    // which game's bot players
+    int32 gameID = 1;
+    int32 offset = 2;
+    int32 limit = 3;
+}
+message ListBotPlayersReply {
+    repeated UserBasic values = 1;
+    int32 offset = 2;
+    int32 limit = 3;
+    int32 count = 4;
+    string error = 5;
+}
+
+// Game
+
+message CreateGameRequest {
+    GameDetail value = 1;
+}
+message CreateGameReply {
+    GameDetail value = 1;
+    string error = 2;
+}
+
+message ListGamesRequest {
+    int32 offset = 1;
+    int32 limit = 2;
+}
+message ListGamesReply {
+    repeated GameDetail values = 1;
+    int32 offset = 2;
+    int32 limit = 3;
+    int32 count = 4;
+    string error = 5;
+}
+
+message GetGameByIDRequest {
+    int32 id = 1;
+}
+message GetGameByIDReply {
+    GameDetail value = 1;
+    string error = 2;
+}
+
+message GetGameByNameRequest {
+    string name = 1;
+    int32 offset = 2;
+    int32 limit = 3;
+}
+message GetGameByNameReply {
+    repeated GameDetail values = 1;
+    int32 offset = 2;
+    int32 limit = 3;
+    int32 count = 4;
+    string error = 5;
+}
+
+message UpdateGameRequest {
+    GameDetail value = 1;
+}
+message UpdateGameReply {
+    GameDetail value = 1;
+}
+
+message DeleteGameRequest {
+    int32 id = 1;
+}
+message DeleteGameReply {
+    string error = 1;
+}

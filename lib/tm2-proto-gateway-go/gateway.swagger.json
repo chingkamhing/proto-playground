@@ -1,0 +1,260 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "TM2 Game API Gateway",
+    "version": "0.1.0",
+    "contact": {
+      "name": "github.com/TMGaminghk/tm2-proto-gateway",
+      "url": "https://www.tmgaming.page/",
+      "email": "kam.dev@tmgaming.page"
+    }
+  },
+  "tags": [
+    {
+      "name": "User"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/user/balance/{id}": {
+      "get": {
+        "summary": "get user balance",
+        "operationId": "User_GetUserBalance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatewayGetUserBalanceReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/api/v1/user/basic/{id}": {
+      "get": {
+        "summary": "get user basic information",
+        "operationId": "User_GetUserBasic",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gatewayGetUserBasicReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "User"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "gatewayGetUserBalanceReply": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/tmdatabaseUserBalance"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "gatewayGetUserBasicReply": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/tmdatabaseUserBasic"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "tmdatabaseUserBalance": {
+      "type": "object",
+      "properties": {
+        "userID": {
+          "type": "integer",
+          "format": "int32",
+          "title": "@inject_tag: db:\"UserID\""
+        },
+        "score": {
+          "type": "string",
+          "format": "int64",
+          "title": "@inject_tag: db:\"Score\""
+        },
+        "revenue": {
+          "type": "string",
+          "format": "int64",
+          "title": "@inject_tag: db:\"Revenue\""
+        },
+        "insureScore": {
+          "type": "string",
+          "format": "int64",
+          "title": "@inject_tag: db:\"InsureScore\""
+        },
+        "allWinScore": {
+          "type": "string",
+          "format": "int64",
+          "title": "@inject_tag: db:\"AllWinScore\""
+        },
+        "betTotal": {
+          "type": "string",
+          "format": "int64",
+          "title": "@inject_tag: db:\"BetTotal\""
+        },
+        "betCount": {
+          "type": "string",
+          "format": "int64",
+          "title": "@inject_tag: db:\"BetCount\""
+        },
+        "effectiveBetTotal": {
+          "type": "string",
+          "format": "int64",
+          "title": "@inject_tag: db:\"EffectiveBetTotal\""
+        },
+        "jackpotScore": {
+          "type": "string",
+          "format": "int64",
+          "title": "@inject_tag: db:\"JackpotScore\""
+        },
+        "tmScore": {
+          "type": "string",
+          "format": "int64",
+          "title": "@inject_tag: db:\"TMScore\""
+        },
+        "jackpotBet": {
+          "type": "string",
+          "format": "int64",
+          "title": "@inject_tag: db:\"JackpotBet\""
+        }
+      }
+    },
+    "tmdatabaseUserBasic": {
+      "type": "object",
+      "properties": {
+        "userID": {
+          "type": "integer",
+          "format": "int32",
+          "title": "@inject_tag: db:\"UserID\""
+        },
+        "gameID": {
+          "type": "integer",
+          "format": "int32",
+          "title": "@inject_tag: db:\"GameID\""
+        },
+        "accounts": {
+          "type": "string",
+          "title": "@inject_tag: db:\"Accounts\""
+        },
+        "nickName": {
+          "type": "string",
+          "title": "@inject_tag: db:\"NickName\""
+        },
+        "faceID": {
+          "type": "string",
+          "title": "@inject_tag: db:\"FaceID\""
+        },
+        "gender": {
+          "type": "string",
+          "title": "@inject_tag: db:\"Gender\""
+        },
+        "nullity": {
+          "type": "boolean",
+          "title": "@inject_tag: db:\"Nullity\""
+        },
+        "lastLogonDate": {
+          "type": "string",
+          "format": "int64",
+          "title": "@inject_tag: db:\"LastLogonDate\""
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "bearer": {
+      "type": "apiKey",
+      "description": "Authentication token, prefixed by Bearer: Bearer \u003ctoken\u003e",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ]
+}

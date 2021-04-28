@@ -1,0 +1,26 @@
+syntax = "proto3";
+package gateway;
+option go_package = "github.com/TMGaminghk/tm2-proto-gateway-go;tm2_proto_gateway";
+
+// User
+
+// user session is obtained from user session (i.e. Bearer key)
+message UserSession {
+    // @inject_tag: db:"UserID"
+    int32 userID = 1;
+    // @inject_tag: db:"Accounts"
+    string accounts = 2;
+    // @inject_tag: db:"GameID"
+    int32 gameID = 3;
+    // @inject_tag: db:"Nullity"
+    bool nullity = 4;
+}
+
+// TM2 Game
+
+// Game Room
+
+// Play Game
+
+// GameRecord
+

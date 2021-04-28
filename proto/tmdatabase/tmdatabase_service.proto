@@ -1,0 +1,35 @@
+syntax = "proto3";
+package tmdatabase;
+option go_package = "github.com/TMGaminghk/tm2-proto-tmdatabase-go;tm2_proto_tmdatabase";
+
+import "tmdatabase/tmdatabase_rr.proto";
+
+// User
+service User {
+    // get user basic information
+    rpc GetUserBasic(GetUserBasicRequest) returns (GetUserBasicReply) {}
+    // get user balance
+    rpc GetUserBalance(GetUserBalanceRequest) returns (GetUserBalanceReply) {}
+    // get user start game info
+    rpc GetUserStartGameInfo(GetUserStartGameInfoRequest) returns (GetUserStartGameInfoReply) {}
+    // create bot players
+    rpc CreateBotPlayers(CreateBotPlayersRequest) returns (CreateBotPlayersReply) {}
+    // get bot players
+    rpc ListBotPlayers(ListBotPlayersRequest) returns (ListBotPlayersReply) {}
+}
+
+// TM2 Game
+service Game {
+    // create new game
+    rpc CreateGame(CreateGameRequest) returns (CreateGameReply) {}
+    // list all games' info
+    rpc ListGames(ListGamesRequest) returns (ListGamesReply) {}
+    // get game info by game ID
+    rpc GetGameByID(GetGameByIDRequest) returns (GetGameByIDReply) {}
+    // get game info by game name
+    rpc GetGameByName(GetGameByNameRequest) returns (GetGameByNameReply) {}
+    // update game info
+    rpc UpdateGame(UpdateGameRequest) returns (UpdateGameReply) {}
+    // delete game info
+    rpc DeleteGame(DeleteGameRequest) returns (DeleteGameReply) {}
+}
